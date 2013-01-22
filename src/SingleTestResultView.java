@@ -17,7 +17,7 @@ public class SingleTestResultView extends JFrame {
 
 		JFreeChart linechart = ChartFactory.createLineChart("Ergebnis", "Elementzahl", "millisekunden", dataSet, PlotOrientation.VERTICAL, false, true, false);
 		ChartPanel panel = new ChartPanel(linechart);
-		setSize(500, 500);
+		setSize(500, 300);
 		
 		setContentPane(panel);
 		setLocationRelativeTo(null);

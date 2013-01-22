@@ -1,5 +1,7 @@
 //import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -10,7 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 
-public class SingleTestOptionView extends JFrame {
+public class SingleTestOptionView extends JFrame{
 
 	/**
 	 * 
@@ -38,6 +40,9 @@ public class SingleTestOptionView extends JFrame {
 	// Buttons
 	private JButton goButton = new JButton("Go!");
 	
+	// RadioButoon Auswertung
+	private String selectedAlgorithm;
+	private String selectedCase;
 
 	public SingleTestOptionView() {
 		
@@ -60,6 +65,7 @@ public class SingleTestOptionView extends JFrame {
 		algorithmChooseRBPanel.add(algorithmInsertionSort);
 		algorithmChooseRBPanel.add(algorithmMergeSort);
 		algorithmChooseRBPanel.add(algorithmQuickSort);
+		selectedAlgorithm = "bubblesort";
 		
 		algorithmChoosePanel.add(chooseAlgorithm);
 		algorithmChoosePanel.add(algorithmChooseRBPanel);
@@ -72,18 +78,79 @@ public class SingleTestOptionView extends JFrame {
 		caseSelect.add(worstCase);
 		caseChooseRBPanel.add(bestCase);
 		caseChooseRBPanel.add(worstCase);
+		selectedCase = "bestcase";
 		
 		JPanel elementCountPanel = new JPanel(new GridLayout(2, 1));
 		elementCountPanel.add(chooseElementCount);
 		elementCountPanel.add(elementCountField);
+		elementCountField.setText("10");
 
 		caseChoosePanel.add(chooseCase);
 		caseChoosePanel.add(caseChooseRBPanel);
+		
+		addActionCommands();
+		addActionListener();
 		
 		add(algorithmChoosePanel);
 		add(caseChoosePanel);
 		add(elementCountPanel);
 		add(goButton);
 		pack();
+	}
+	
+	private void addActionCommands() {
+		// Action Commands
+		algorithmBubbleSort.setActionCommand("bubblesort");
+		algorithmInsertionSort.setActionCommand("insertionsort");
+		algorithmMergeSort.setActionCommand("mergesort");
+		algorithmQuickSort.setActionCommand("quicksort");
+		
+		bestCase.setActionCommand("bestcase");
+		worstCase.setActionCommand("worstcase");
+		
+		goButton.setActionCommand("go");
+	}
+
+	private void addActionListener() {
+		algorithmBubbleSort.addActionListener(new AlgorithmChooseListener());
+		algorithmInsertionSort.addActionListener(new AlgorithmChooseListener());
+		algorithmMergeSort.addActionListener(new AlgorithmChooseListener());
+		algorithmQuickSort.addActionListener(new AlgorithmChooseListener());
+		
+		bestCase.addActionListener(new CaseChooseListener());
+		worstCase.addActionListener(new CaseChooseListener());
+	}
+
+	public String getElementCount() {
+		return elementCountField.getText();
+	}
+
+
+	public JButton getGoButton() {
+		return goButton;
+	}
+	
+	public String getSelectedAlgorithm() {
+		return selectedAlgorithm;
+	}
+	
+	public String getSelectedCase() {
+		return selectedCase;
+	}
+	
+	// ActionListener Klassen
+	private class AlgorithmChooseListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			selectedAlgorithm = e.getActionCommand();
+		}
+	}
+	
+	private class CaseChooseListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			selectedCase = e.getActionCommand();
+		}
+		
 	}
 }

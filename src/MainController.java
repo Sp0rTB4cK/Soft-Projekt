@@ -2,7 +2,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
+import org.jfree.data.category.DefaultCategoryDataset;
 
 
 public class MainController {
@@ -49,6 +52,78 @@ public class MainController {
 				
 			}
 		});
+		
+		// SingleTestOptionView
+		singleTestOptionView.getGoButton().addActionListener(new SingleTestOptionViewController());
+	}
+	
+	class SingleTestOptionViewController implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton event = (JButton) e.getSource();
+			
+			if("go".equals(event.getActionCommand())) {
+				int elementCount = Integer.parseInt(singleTestOptionView.getElementCount());
+				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+				
+				for(int i = 1; i <= elementCount; i += 1000) {
+					int array[] = new int[0];
+					if("worstcase".equals(singleTestOptionView.getSelectedCase())) {
+						array = makeWCArray(i);
+					} else {
+						array = makeBCArray(i);
+					}
+
+					System.out.println("Sorting with " + i + " elements...");
+
+					if("bubblesort".equals(singleTestOptionView.getSelectedAlgorithm())) {
+						Bubblesort sort = new Bubblesort(array);
+						dataset.addValue(sort.getSortTime(), "bubblesort", new Integer(i).toString());
+					}
+					if("insertionsort".equals(singleTestOptionView.getSelectedAlgorithm())) {
+						Insertionsort sort = new Insertionsort(array);
+						dataset.addValue(sort.getSortTime(), "insertionsort", new Integer(i).toString());
+					}
+					if("mergesort".equals(singleTestOptionView.getSelectedAlgorithm())) {
+						Mergesort sort = new Mergesort(array);
+						dataset.addValue(sort.getSortTime(), "mergesort", new Integer(i).toString());
+					}
+					if("quicksort".equals(singleTestOptionView.getSelectedAlgorithm())) {
+						Quicksort sort = new Quicksort(array);
+						dataset.addValue(sort.getSortTime(), "quicksort", new Integer(i).toString());
+					}
+				}
+				
+				new SingleTestResultView(dataset);
+				
+				System.out.println(singleTestOptionView.getSelectedAlgorithm());
+				System.out.println(singleTestOptionView.getElementCount());
+				System.out.println("GOOOO");
+			}
+		}
+	}
+	
+	private int[] makeWCArray(int elements) {
+		int array[] = new int[elements];
+		
+		int j = 0;
+		for(int i = array.length-1; i >= 0; i--) {
+			array[i] = j;
+			j++;
+		}
+		
+		return array;
+	}
+
+	private int[] makeBCArray(int elements) {
+		int array[] = new int[elements];
+		
+		for(int i = 0; i < array.length; i++) {
+			array[i] = i;
+		}
+		
+		return array;
 	}
 	
 	class MenuBarListener implements ActionListener {
