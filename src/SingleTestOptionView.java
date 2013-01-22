@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 public class SingleTestOptionView extends JFrame{
@@ -22,9 +24,7 @@ public class SingleTestOptionView extends JFrame{
 	// Labels
 	private JLabel chooseAlgorithm = new JLabel("WŠhlen sie den Algorithmus");
 	private JLabel chooseCase = new JLabel("WŠhlen Sie die Testvariante:");
-	private JLabel chooseElementCount = new JLabel("WŠhlen sie die maximale Elementzahl");
-	
-	private JTextField elementCountField = new JTextField();
+	private JLabel chooseElementCount = new JLabel("WŠhlen sie die maximale Elementzahl: 1");
 	
 	private ButtonGroup algorithmSelect = new ButtonGroup();
 	private ButtonGroup caseSelect = new ButtonGroup();
@@ -40,9 +40,13 @@ public class SingleTestOptionView extends JFrame{
 	// Buttons
 	private JButton goButton = new JButton("Go!");
 	
+	// Slider
+	private JSlider elementCountSlider = new JSlider(1, 60001, 1);
+	
 	// RadioButoon Auswertung
 	private String selectedAlgorithm;
 	private String selectedCase;
+	private int elementCount;
 
 	public SingleTestOptionView() {
 		
@@ -82,8 +86,12 @@ public class SingleTestOptionView extends JFrame{
 		
 		JPanel elementCountPanel = new JPanel(new GridLayout(2, 1));
 		elementCountPanel.add(chooseElementCount);
-		elementCountPanel.add(elementCountField);
-		elementCountField.setText("10");
+		elementCountPanel.add(elementCountSlider);
+		elementCountSlider.setMajorTickSpacing(10000);
+		elementCountSlider.setMinorTickSpacing(1000);
+		elementCountSlider.setPaintLabels(true);
+		elementCountSlider.setPaintTicks(true);
+		elementCount = 1;
 
 		caseChoosePanel.add(chooseCase);
 		caseChoosePanel.add(caseChooseRBPanel);
@@ -119,10 +127,12 @@ public class SingleTestOptionView extends JFrame{
 		
 		bestCase.addActionListener(new CaseChooseListener());
 		worstCase.addActionListener(new CaseChooseListener());
+		
+		elementCountSlider.addChangeListener(new ElementCountSliderListener());
 	}
 
-	public String getElementCount() {
-		return elementCountField.getText();
+	public int getElementCount() {
+		return elementCount;
 	}
 
 
@@ -150,6 +160,16 @@ public class SingleTestOptionView extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			selectedCase = e.getActionCommand();
+		}
+	}
+	
+	private class ElementCountSliderListener implements ChangeListener {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			JSlider slider = (JSlider) e.getSource();
+			
+			elementCount = slider.getValue();
+			chooseElementCount.setText("WŠhlen sie die maximale Elementzahl: "+ elementCount);
 		}
 		
 	}

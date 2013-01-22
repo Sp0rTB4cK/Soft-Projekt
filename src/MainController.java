@@ -64,7 +64,7 @@ public class MainController {
 			JButton event = (JButton) e.getSource();
 			
 			if("go".equals(event.getActionCommand())) {
-				int elementCount = Integer.parseInt(singleTestOptionView.getElementCount());
+				int elementCount = singleTestOptionView.getElementCount();
 				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
 				for(int i = 1; i <= elementCount; i += 1000) {
