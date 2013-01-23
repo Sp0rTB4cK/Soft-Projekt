@@ -35,15 +35,15 @@ public class MainMenuView extends JFrame {
 		
 		JPanel singleTestDescriptionPanel = new JPanel();
 		singleTestDescriptionPanel.setLayout(descriptionLayout);
-		WrappedLabel singleTestDescriptionText = new WrappedLabel("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy " +
-				"eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et");
+		WrappedLabel singleTestDescriptionText = new WrappedLabel("Bei einem Einzeltest waehlen Sie einen Sortieralgorithmus, ob worst- oder best-case und die maximale Anzahl der Elemente." +
+				"\nDas Programm wird verschiedene Arrays mit der Elementanzahl 1 bis X sortieren und Ihnen die jeweilige Sortierzeit als Liniendiagramm ausgeben.");
 		singleTestDescriptionText.setSize(300, 100);
 		singleTestDescriptionPanel.add(singleTestDescriptionText);
 		
 		JPanel multiTestDescriptionPanel = new JPanel();
 		multiTestDescriptionPanel.setLayout(descriptionLayout);
-		WrappedLabel multiTestDescriptionText = new WrappedLabel("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy " +
-				"eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et");
+		WrappedLabel multiTestDescriptionText = new WrappedLabel("Der Vergleichstest funktioniert wie der Einzeltest. Der Unterschied liegt hier jedoch darin, dass alle 4 Sortierverfahren durchgespielt werden und Sie" +
+				" ein Diagramm erhalten, in dem Sie alle 4 Algorithmen vergleichen koennen.");
 		multiTestDescriptionText.setSize(300, 100);
 		multiTestDescriptionPanel.add(multiTestDescriptionText);
 		
