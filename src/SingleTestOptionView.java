@@ -43,15 +43,14 @@ public class SingleTestOptionView extends JFrame{
 	// Slider
 	private JSlider elementCountSlider = new JSlider(1, 60001, 1);
 	
-	// RadioButoon Auswertung
+	// Auswertung
 	private String selectedAlgorithm;
 	private String selectedCase;
 	private int elementCount;
 
 	public SingleTestOptionView() {
-		
 
-		setTitle("Sortieralgorithmen Tester");
+		setTitle("Sortieralgorithmen Tester - Einzeltest");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//FlowLayout layout = new FlowLayout(FlowLayout.LEFT);
@@ -134,7 +133,6 @@ public class SingleTestOptionView extends JFrame{
 	public int getElementCount() {
 		return elementCount;
 	}
-
 
 	public JButton getGoButton() {
 		return goButton;

@@ -11,7 +11,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class MainController {
 	//Views
 	private MainMenuView mainMenuView;
-	private SingleTestOptionView singleTestOptionView = new SingleTestOptionView(); 
+	private SingleTestOptionView singleTestOptionView;
+	private MultiTestOptionView multiTestOptionView;
 	
 	// Menu Bar
 	private SortMenuBar menuBar;
@@ -22,6 +23,7 @@ public class MainController {
 		
 		mainMenuView = new MainMenuView();
 		singleTestOptionView = new SingleTestOptionView();
+		multiTestOptionView = new MultiTestOptionView();
 		
 		addActionListeners();
 	}
@@ -42,23 +44,32 @@ public class MainController {
 		
 		//main menu view
 		mainMenuView.getSingleTest().addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				singleTestOptionView.setLocationRelativeTo(null);
 				singleTestOptionView.setJMenuBar(menuBar);
 				singleTestOptionView.setVisible(true);
 				mainMenuView.setVisible(false);
-				
+			}
+		});
+		mainMenuView.getMultiTest().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				multiTestOptionView.setLocationRelativeTo(null);
+				multiTestOptionView.setJMenuBar(menuBar);
+				multiTestOptionView.setVisible(true);
+				mainMenuView.setVisible(false);
 			}
 		});
 		
 		// SingleTestOptionView
 		singleTestOptionView.getGoButton().addActionListener(new SingleTestOptionViewController());
+		
+		// MultiTestOptionView
+		multiTestOptionView.getGoButton().addActionListener(new MultiTestOptionViewController());
 	}
 	
 	class SingleTestOptionViewController implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JButton event = (JButton) e.getSource();
@@ -74,9 +85,7 @@ public class MainController {
 					} else {
 						array = makeBCArray(i);
 					}
-
-					System.out.println("Sorting with " + i + " elements...");
-
+					
 					if("bubblesort".equals(singleTestOptionView.getSelectedAlgorithm())) {
 						Bubblesort sort = new Bubblesort(array);
 						dataset.addValue(sort.getSortTime(), "bubblesort", new Integer(i).toString());
@@ -95,11 +104,62 @@ public class MainController {
 					}
 				}
 				
-				new SingleTestResultView(dataset);
+				new SingleTestResultView(dataset);;
+			}
+		}
+	}
+	
+	private class MultiTestOptionViewController implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton event = (JButton) e.getSource();
+			
+			if("go".equals(event.getActionCommand())) {
+				int elementCount = multiTestOptionView.getElementCount();
+				DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 				
-				System.out.println(singleTestOptionView.getSelectedAlgorithm());
-				System.out.println(singleTestOptionView.getElementCount());
-				System.out.println("GOOOO");
+				for(int i = 1; i <= elementCount; i += 1000) {
+					int array[] = new int[0];
+					if("worstcase".equals(singleTestOptionView.getSelectedCase())) {
+						array = makeWCArray(i);
+					} else {
+						array = makeBCArray(i);
+					}
+					Bubblesort sort = new Bubblesort(array);
+					dataset.addValue(sort.getSortTime(), "bubblesort", new Integer(i).toString());
+				}
+				for(int i = 1; i <= elementCount; i += 1000) {
+					int array[] = new int[0];
+					if("worstcase".equals(multiTestOptionView.getSelectedCase())) {
+						array = makeWCArray(i);
+					} else {
+						array = makeBCArray(i);
+					}
+					Insertionsort sort = new Insertionsort(array);
+					dataset.addValue(sort.getSortTime(), "insertionsort", new Integer(i).toString());
+				}
+				for(int i = 1; i <= elementCount; i += 1000) {
+					int array[] = new int[0];
+					if("worstcase".equals(multiTestOptionView.getSelectedCase())) {
+						array = makeWCArray(i);
+					} else {
+						array = makeBCArray(i);
+					}
+					Mergesort sort = new Mergesort(array);
+					dataset.addValue(sort.getSortTime(), "mergesort", new Integer(i).toString());
+				}for(int i = 1; i <= elementCount; i += 1000) {
+					int array[] = new int[0];
+					if("worstcase".equals(multiTestOptionView.getSelectedCase())) {
+						array = makeWCArray(i);
+					} else {
+						array = makeBCArray(i);
+					}
+
+					Quicksort sort = new Quicksort(array);
+					dataset.addValue(sort.getSortTime(), "quicksort", new Integer(i).toString());
+				}
+				
+				new SingleTestResultView(dataset);
 			}
 		}
 	}
@@ -122,12 +182,10 @@ public class MainController {
 		for(int i = 0; i < array.length; i++) {
 			array[i] = i;
 		}
-		
 		return array;
 	}
 	
 	class MenuBarListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// Datei
@@ -145,10 +203,7 @@ public class MainController {
 			}
 			if("manual".equals(e.getActionCommand())) {
 				System.out.println("ToDo: Handbuch!");
-			}
-			
+			}	
 		}
-
 	}
-
 }

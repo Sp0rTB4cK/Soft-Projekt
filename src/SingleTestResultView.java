@@ -14,8 +14,13 @@ public class SingleTestResultView extends JFrame {
 	public SingleTestResultView(DefaultCategoryDataset dataSet) {
 		super("Result");
 		
-
-		JFreeChart linechart = ChartFactory.createLineChart("Ergebnis", "Elementzahl", "millisekunden", dataSet, PlotOrientation.VERTICAL, false, true, false);
+		JFreeChart linechart;
+		if(dataSet.getRowCount() < 1) {
+			linechart = ChartFactory.createLineChart("Ergebnis", "Elementzahl", "millisekunden", dataSet, PlotOrientation.VERTICAL, false, true, false);
+		} else {
+			linechart = ChartFactory.createLineChart("Ergebnis", "Elementzahl", "millisekunden", dataSet, PlotOrientation.VERTICAL, true, true, false);
+		}
+		
 		ChartPanel panel = new ChartPanel(linechart);
 		setSize(500, 300);
 		
