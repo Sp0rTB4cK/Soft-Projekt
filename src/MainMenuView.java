@@ -56,6 +56,8 @@ public class MainMenuView extends JFrame {
 		add(buttonPanel);
 		pack();
 		
+		//test
+		
 	}
 
 	public JButton getMultiTest() {
