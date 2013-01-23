@@ -1,3 +1,4 @@
+package de.soft.sortieralgorithmen;
 /**
  * Die Klasse Bubblesort erhaelt ein unsortiertes Array und sortiert es nach dem Bubblesort Verfahren.
  * 

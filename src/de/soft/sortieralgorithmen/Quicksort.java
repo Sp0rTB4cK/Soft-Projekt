@@ -1,3 +1,4 @@
+package de.soft.sortieralgorithmen;
 /** 
  * Die Klasse Quicksort sortiert den uebergebenen Zahlenarray.
  * 

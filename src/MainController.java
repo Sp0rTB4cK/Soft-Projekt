@@ -7,6 +7,11 @@ import javax.swing.JOptionPane;
 
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import de.soft.sortieralgorithmen.Bubblesort;
+import de.soft.sortieralgorithmen.Insertionsort;
+import de.soft.sortieralgorithmen.Mergesort;
+import de.soft.sortieralgorithmen.Quicksort;
+
 
 public class MainController {
 	//Views
