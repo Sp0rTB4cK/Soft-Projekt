@@ -56,7 +56,6 @@ public class MainMenuView extends JFrame {
 		add(buttonPanel);
 		pack();
 		
-		//test
 		
 	}
 

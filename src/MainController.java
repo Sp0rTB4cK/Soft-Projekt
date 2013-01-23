@@ -199,10 +199,30 @@ public class MainController {
 				String about = "Sortieralgorithmus Tester wurde von Michael Hahn und Johann Fischer entwickelt. \n\n" +
 						"Version 1.0";
 				
-				JOptionPane.showMessageDialog(null, about, "†ber", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, about, "Über", JOptionPane.PLAIN_MESSAGE);
 			}
 			if("manual".equals(e.getActionCommand())) {
-				System.out.println("ToDo: Handbuch!");
+				String manual = "So wird der Sortieralgorithmen Tester verwendet: \n\n";
+				manual += "Einzeltest: \n";
+				manual += "     Klicken Sie auf die Schaltfläche \"Einzeltest\" im Haupfenster, um einen einzelnen " +
+						"Sortieralgorithmus zu testen. \n";
+				manual += "     Im Fenster für den Einzeltest können Sie einen der vier Sortieralgorithmen auswählen,\n";
+				manual += "     Worst- oder Best-Case wählen und per Schieberegler einstellen, für bis zu wieviel " +
+						"Elemnten getestet werden soll.\n";
+				manual += "     Nach einem Klick auf \"GO\" startet das Programm mit der Berechnung und zeigt das " +
+						"Ergebnis als Diagramm in einem neuen Fenster an. \n\n";
+				manual += "Vergleichstest: \n";
+				manual += "     Im Fenster für den Vergleichstest können Sie Worst- oder Best-Case wählen, sowie\n";
+				manual += "     per Schieberegler einstellen, für bis zu wieviel Elemnten getestet werden soll.\n";
+				manual += "     Nach einem Klick auf \"GO\" startet das Programm mit der Berechnung und zeigt das " +
+						"Ergebnis als Diagramm in einem neuen Fenster an. \n\n";
+				manual += "Viel Spaß bei, Vergleichen und Auswerten! \n\n";
+				
+				manual += "    ~-_ Steamin'\n";
+				manual += "    -~    Hot\n";
+				manual += "c|_|    JAVA!\n";
+				
+				JOptionPane.showMessageDialog(null, manual, "Handbuch", JOptionPane.PLAIN_MESSAGE);
 			}	
 		}
 	}
