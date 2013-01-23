@@ -1,3 +1,4 @@
+package de.soft.views;
 import javax.swing.JFrame;
 
 import org.jfree.chart.ChartFactory;

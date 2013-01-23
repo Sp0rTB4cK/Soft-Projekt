@@ -1,3 +1,5 @@
+import de.soft.controller.MainController;
+
 
 public class Main {
 	static MainController controller;

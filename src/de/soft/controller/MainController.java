@@ -1,3 +1,5 @@
+package de.soft.controller;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +13,10 @@ import de.soft.sortieralgorithmen.Bubblesort;
 import de.soft.sortieralgorithmen.Insertionsort;
 import de.soft.sortieralgorithmen.Mergesort;
 import de.soft.sortieralgorithmen.Quicksort;
+import de.soft.views.MainMenuView;
+import de.soft.views.MultiTestOptionView;
+import de.soft.views.SingleTestOptionView;
+import de.soft.views.SingleTestResultView;
 
 
 public class MainController {

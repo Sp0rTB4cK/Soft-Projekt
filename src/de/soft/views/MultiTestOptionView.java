@@ -1,3 +1,4 @@
+package de.soft.views;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 

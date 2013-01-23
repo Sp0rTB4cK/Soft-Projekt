@@ -1,3 +1,4 @@
+package de.soft.views;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
